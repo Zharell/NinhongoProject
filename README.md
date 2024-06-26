@@ -9,6 +9,7 @@ La API se encuentra en desarrollo y se espera que esté disponible en entorno pr
 Escuchamos vuestras ideas!
 
 La API estará disponible en https://ninhongo.com
+
 Endpoints 
 
     GET /api/v1/wordofday - Devuelve una palabra japonesa aleatoria.
