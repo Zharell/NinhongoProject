@@ -12,8 +12,8 @@ La API estará disponible en https://ninhongo.com
 
 Endpoints 
 
-    GET /api/v1/wordofday - Devuelve una palabra japonesa aleatoria.
-    GET /api/v1/kanjiofday - Devuelve un kanji aleatorio.
+    GET https://ninhongo.com/api/v1/wordofday - Devuelve una palabra japonesa aleatoria.
+    GET https://ninhongo.com/api/v1/kanjiofday - Devuelve un kanji aleatorio.
 
 Contribuciones
 
