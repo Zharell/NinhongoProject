@@ -2,7 +2,6 @@ package com.ninhongo.entities.jmdicmodel;
 
 import java.util.List;
 
-
 public class Kanjidicc {
 
 	private boolean common;

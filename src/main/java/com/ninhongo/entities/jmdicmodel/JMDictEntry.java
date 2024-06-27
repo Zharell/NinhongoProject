@@ -2,7 +2,7 @@ package com.ninhongo.entities.jmdicmodel;
 
 import java.util.List;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JMDictEntry {
@@ -12,12 +12,12 @@ public class JMDictEntry {
 	@JsonProperty("kanji")
 	private List<Kanjidicc> kanjiDicc;
 	
-	//@JsonIgnore
-	private List<String> kana;
+	@JsonProperty("kana")
+	private List<Kanadicc> kana;
 	
+	@JsonIgnore
 	private List<String> sense;
 	
-
 	public List<Kanjidicc> getKanjiDicc() {
 		return kanjiDicc;
 	}
@@ -30,10 +30,10 @@ public class JMDictEntry {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<String> getKana() {
+	public List<Kanadicc> getKana() {
 		return kana;
 	}
-	public void setKana(List<String> kana) {
+	public void setKana(List<Kanadicc> kana) {
 		this.kana = kana;
 	}
 	public List<String> getSense() {

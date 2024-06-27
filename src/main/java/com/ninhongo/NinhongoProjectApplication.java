@@ -11,7 +11,7 @@ public class NinhongoProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NinhongoProjectApplication.class, args);
 		
-		NinhongoController ninhongoController;
+		//NinhongoController ninhongoController;
 		
 		
 	}
