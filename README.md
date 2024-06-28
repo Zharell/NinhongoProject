@@ -14,6 +14,7 @@ Endpoints
 
     GET https://ninhongo.com/api/v1/wotd - Devuelve una palabra japonesa aleatoria.
     GET https://ninhongo.com/api/v1/wotk - Devuelve un kanji aleatorio.
+    GET https://ninhongo.com/api/v1/word/{KANJI/PALABRA} - Devuelve el kanji o palabra enviada
 
 Contribuciones
 
