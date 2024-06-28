@@ -17,6 +17,7 @@ public class NinhongoController {
 	@Autowired
 	private NinhongoService ninhongoService;
 	
+	//Devolvemos vía GET la palabra del día
 	@GetMapping
 	public ResponseEntity<JMDictEntry> getWordOfTheDay() {
 		return ResponseEntity.ok(ninhongoService.getWordOfTheDay());

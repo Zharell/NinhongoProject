@@ -13,34 +13,41 @@ public class JMDictEntry {
 	private List<Kanjidicc> kanjiDicc;
 	
 	@JsonProperty("kana")
-	private List<Kanadicc> kana;
+	private List<Kanadicc> kanaDicc;
 	
-	@JsonIgnore
-	private List<String> sense;
-	
-	public List<Kanjidicc> getKanjiDicc() {
-		return kanjiDicc;
-	}
-	public void setKanjiDicc(List<Kanjidicc> kanjiDicc) {
-		this.kanjiDicc = kanjiDicc;
-	}
+	@JsonProperty("sense")
+	private List<Sensedicc> senseDicc;
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<Kanadicc> getKana() {
-		return kana;
+
+	public List<Kanjidicc> getKanjiDicc() {
+		return kanjiDicc;
 	}
-	public void setKana(List<Kanadicc> kana) {
-		this.kana = kana;
+
+	public void setKanjiDicc(List<Kanjidicc> kanjiDicc) {
+		this.kanjiDicc = kanjiDicc;
 	}
-	public List<String> getSense() {
-		return sense;
+
+	public List<Kanadicc> getKanaDicc() {
+		return kanaDicc;
 	}
-	public void setSense(List<String> sense) {
-		this.sense = sense;
+
+	public void setKanaDicc(List<Kanadicc> kanaDicc) {
+		this.kanaDicc = kanaDicc;
 	}
-	
+
+	public List<Sensedicc> getSenseDicc() {
+		return senseDicc;
+	}
+
+	public void setSenseDicc(List<Sensedicc> senseDicc) {
+		this.senseDicc = senseDicc;
+	}
+
 }
