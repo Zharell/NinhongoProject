@@ -22,6 +22,9 @@ import com.ninhongo.entities.jmdicmodel.JMDictWords;
 @Service
 public class NinhongoService {
 	
+	private final int ID_INICIO = 1000000;
+	private final int ID_FINAL = 5746848;
+	
 	private static final Logger log = LoggerFactory.getLogger(NinhongoService.class);
 	
 	//Todas las palabras y maps
@@ -30,6 +33,7 @@ public class NinhongoService {
 	private ConcurrentMap <String, JMDictEntry> wordMapId;
 	private ConcurrentMap <String, JMDictEntry> wordMapKanji;
 	private ConcurrentMap <String, JMDictEntry> wordMapKana;
+	private ConcurrentMap <Integer, String> randomMapId;
 	
 	@Autowired
 	ResourceLoader resourceLoader;
@@ -57,11 +61,16 @@ public class NinhongoService {
 			wordMapId = new ConcurrentHashMap();
 			wordMapKanji = new ConcurrentHashMap();
 			wordMapKana = new ConcurrentHashMap();
+			randomMapId = new ConcurrentHashMap();
 			//Realizamos validaciones en caso de que esté un registro null o vacío
+			int countId = 0;
 			for (JMDictEntry entry : allWordList) {
 				
+				//Obtenemos valores utilizables para los IDs
 				if (entry.getId() != null && !entry.getId().isEmpty()) {
+					countId++;
 					wordMapId.put(entry.getId(), entry);
+					randomMapId.put(countId, entry.getId());
 				}
 				
 				if (entry.getKanjiDicc() != null && !entry.getKanjiDicc().isEmpty()) {
@@ -83,11 +92,8 @@ public class NinhongoService {
 	
 	//Retornamos la palabra del día
 	public JMDictEntry getWordOfTheDay () {
-				
-		
-		return wordMapId.get("1458740");
-		
-		//return dictAllWords.getJmDictWords().get(47007);
+		int valorRandom = (int) (Math.random() * allWordList.size() + 1);
+		return wordMapId.get(randomMapId.get(valorRandom));
 	}
 	
 }
