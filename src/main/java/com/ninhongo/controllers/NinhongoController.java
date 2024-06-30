@@ -11,17 +11,34 @@ import com.ninhongo.entities.jmdicmodel.JMDictWords;
 import com.ninhongo.services.NinhongoService;
 
 @RestController
-@RequestMapping("/api/v1/wotd")
+@RequestMapping("/api/v1")
 public class NinhongoController {
 
 	@Autowired
 	private NinhongoService ninhongoService;
 	
-	//Devolvemos vía GET la palabra del día
-	@GetMapping
+	//Devolvemos la palabra del día
+	@GetMapping("/wotd")
 	public ResponseEntity<JMDictEntry> getWordOfTheDay() {
 		return ResponseEntity.ok(ninhongoService.getWordOfTheDay());
 	}
 	
+	//Devolvemos una palabra aleatoria
+	@GetMapping("/rword")
+	public ResponseEntity<JMDictEntry> getRandomWord() {
+		return ResponseEntity.ok(ninhongoService.getRandomWord());
+	}
+	
+	//Devolvemos el kanji del día
+	@GetMapping("/wotk")
+	public ResponseEntity<JMDictEntry> getKanjiOfTheDay() {
+		return ResponseEntity.ok(ninhongoService.getKanjiOfTheDay());
+	}
+	
+	//Devolvemos un kanji aleatorio
+	@GetMapping("/rwotk")
+	public ResponseEntity<JMDictEntry> getRandomKanji() {
+		return ResponseEntity.ok(ninhongoService.getRandomKanji());
+	}
 	
 }
