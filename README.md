@@ -16,6 +16,8 @@ Endpoints
     OK GET https://ninhongo.com/api/v1/rwotd - Devuelve una palabra aleatoria.
     OK GET https://ninhongo.com/api/v1/wotk - Devuelve el kanji del día.
     OK GET https://ninhongo.com/api/v1/rwotk - Devuelve un kanji aleatoria.
+    OK GET https://ninhongo.com/api/v1/wotnk - Devuelve una palabra Kana del día.
+    OK GET https://ninhongo.com/api/v1/rwotnk - Devuelve una palabra Kana aleatoria.
     KO GET https://ninhongo.com/api/v1/wotd/{KANJI/PALABRA} - Devuelve información el kanji o palabra enviada
 
 Contribuciones
