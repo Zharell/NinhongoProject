@@ -36,10 +36,12 @@ public class NinhongoService {
 	//Variables Map encargadas de almacenar IDs correctos para evitar nulos e incongruencias
 	private ConcurrentMap <Integer, String> randomWordId;
 	private ConcurrentMap <Integer, String> randomKanjiId;
+	private ConcurrentMap <Integer, String> randomKanaId;
 	
 	//Ids concretos de la palabra o Kanji del día
 	private int idWordOfTheDay;
 	private int idKanjiOfTheDay;
+	private int idKanaOfTheDay;
 	
 	@Autowired
 	ResourceLoader resourceLoader;
@@ -76,9 +78,11 @@ public class NinhongoService {
 			wordMapKana = new ConcurrentHashMap<String, JMDictEntry>();
 			randomWordId = new ConcurrentHashMap<Integer, String>();
 			randomKanjiId = new ConcurrentHashMap<Integer, String>();
+			randomKanaId = new ConcurrentHashMap<Integer, String>();
 			//Realizamos validaciones en caso de que esté un registro null o vacío
 			int countIdWord = 0;
 			int countIdKanji = 0;
+			int countIdKana = 0;
 			for (JMDictEntry entry : allWordList) {
 				
 				//Obtenemos todas las palabras y valores utilizables para los IDs
@@ -96,11 +100,14 @@ public class NinhongoService {
 					wordMapKanji.put(entry.getKanjiDicc().get(0).getText(), entry);
 					
 					//Obtenemos los IDs de solo los kanji
-					if (entry.getKanjiDicc().size() != 0) {
-						countIdKanji++;
-						randomKanjiId.put(countIdKanji, entry.getId());
-					}
+					countIdKanji++;
+					randomKanjiId.put(countIdKanji, entry.getId());
+
+				} else {
 					
+					//Almacenamos los IDs de los que no tienen kanji (kana)
+					countIdKana++;
+					randomKanaId.put(countIdKana, entry.getId());
 				}
 				
 				if (entry.getKanaDicc() != null && !entry.getKanaDicc().isEmpty()) {
@@ -132,9 +139,11 @@ public class NinhongoService {
 		
 	}
 	
+	//Generamos los valores aleatorios
 	public void generatedRandomIdOfTheDay() {
 		idWordOfTheDay = (int) (Math.random() * randomWordId.size() + 1);
 		idKanjiOfTheDay = (int) (Math.random() * randomKanjiId.size() + 1);
+		idKanaOfTheDay = (int) (Math.random() * randomKanaId.size() + 1);
 	}
 	
 	//Retornamos la palabra del día
@@ -147,6 +156,11 @@ public class NinhongoService {
 		return wordMapId.get(randomKanjiId.get(idKanjiOfTheDay));
 	}
 	
+	//Retornamos la palabra kana del día
+		public JMDictEntry getKanaOfTheDay() {
+			return wordMapId.get(randomKanaId.get(idKanaOfTheDay));
+		}
+	
 	//Retornamos una palabra aleatoria
 	public JMDictEntry getRandomWord() {
 		int randomId = (int) (Math.random() * randomWordId.size() + 1);
@@ -157,6 +171,12 @@ public class NinhongoService {
 	public JMDictEntry getRandomKanji() {
 		int randomId = (int) (Math.random() * randomKanjiId.size() + 1);
 		return wordMapId.get(randomKanjiId.get(randomId));
+	}
+	
+	//Retornamos una palaba kana aleatoria
+	public JMDictEntry getRandomKana() {
+		int randomId = (int) (Math.random() * randomKanaId.size() + 1);
+		return wordMapId.get(randomKanaId.get(randomId));
 	}
 	
 }

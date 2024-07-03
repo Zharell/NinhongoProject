@@ -41,4 +41,16 @@ public class NinhongoController {
 		return ResponseEntity.ok(ninhongoService.getRandomKanji());
 	}
 	
+	//Devolvemos una palabra que no sea kanji del día
+	@GetMapping("/wotnk")
+	public ResponseEntity<JMDictEntry> getKanaOfTheDay() {
+		return ResponseEntity.ok(ninhongoService.getKanaOfTheDay());
+	}
+	
+	//Devolvemos una palabra aleatoria
+	@GetMapping("/rwotnk")
+	public ResponseEntity<JMDictEntry> getRandomKana() {
+		return ResponseEntity.ok(ninhongoService.getRandomKana());
+	}
+	
 }
