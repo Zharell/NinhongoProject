@@ -4,11 +4,9 @@ Ninhongo Project con JMDict y KanjiDict.
 
 API para obtener palabras y kanjis en japonés y practicar el idioma.
 
-La API se encuentra en desarrollo y se espera que esté disponible en entorno productivo para septiembre.
+La API se encuentra desarrollada y funcional, se espera que no tenga caídas teniendo en cuenta que, los cambios se realizarán en horas con poca carga.
 
 Escuchamos vuestras ideas!
-
-La API estará disponible en https://ninhongo.com
 
 Endpoints:
 
@@ -27,7 +25,7 @@ Palabra kana del día (No tiene kanji)
     OK GET api.ninhongo.com/v1/wotnk - Devuelve una palabra Kana del día.
     OK GET api.ninhongo.com/v1/rwotnk - Devuelve una palabra Kana aleatoria.
 
-Opcionales:
+Opcionales (en desarrollo):
 
     KO GET api.ninhongo.com/v1//wotd/{KANJI/PALABRA} - Devuelve información el kanji o palabra enviada
 
