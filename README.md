@@ -14,21 +14,21 @@ La API se encuentra desarrollada y funcional, se espera que no tenga caídas ten
 
 ```
 OK GET api.ninhongo.com/v1/wotd - Devuelve la palabra japonesa del día.
-OK GET api.ninhongo.com/v1/rwotd - Devuelve una palabra aleatoria.
+OK GET api.ninhongo.com/v1/rword - Devuelve una palabra aleatoria.
 ```
 
 ### Kanji del día
 
 ```
-OK GET api.ninhongo.com/v1/wotk - Devuelve el kanji del día.
-OK GET api.ninhongo.com/v1/rwotk - Devuelve un kanji aleatoria.
+OK GET api.ninhongo.com/v1/kotd - Devuelve el kanji del día.
+OK GET api.ninhongo.com/v1/rkanji - Devuelve un kanji aleatoria.
 ```
 
 ### Palabra kana del día (No tiene kanji)
 
 ```
-OK GET api.ninhongo.com/v1/wotnk - Devuelve una palabra Kana del día.
-OK GET api.ninhongo.com/v1/rwotnk - Devuelve una palabra Kana aleatoria.
+OK GET api.ninhongo.com/v1/nkotd - Devuelve una palabra Kana del día.
+OK GET api.ninhongo.com/v1/rnkanji - Devuelve una palabra Kana aleatoria.
 ```
 
 ### Opcionales (en desarrollo):
