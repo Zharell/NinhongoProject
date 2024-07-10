@@ -132,7 +132,7 @@ public class NinhongoService {
 		LocalTime now = LocalTime.now();
 		log.info("Inicio de cambio de palabra del día: {}", now.toString());
 		
-		generatedWordOfTheDay();
+		generatedRandomIdOfTheDay();
 		
 		now = LocalTime.now();
 		log.info("Finalizado cambio de palabra del día: {}", now.toString());

@@ -24,31 +24,31 @@ public class NinhongoController {
 	}
 	
 	//Devolvemos una palabra aleatoria
-	@GetMapping("/rwotd")
+	@GetMapping("/rword")
 	public ResponseEntity<JMDictEntry> getRandomWord() {
 		return ResponseEntity.ok(ninhongoService.getRandomWord());
 	}
 	
 	//Devolvemos el kanji del día
-	@GetMapping("/wotk")
+	@GetMapping("/kotd")
 	public ResponseEntity<JMDictEntry> getKanjiOfTheDay() {
 		return ResponseEntity.ok(ninhongoService.getKanjiOfTheDay());
 	}
 	
 	//Devolvemos un kanji aleatorio
-	@GetMapping("/rwotk")
+	@GetMapping("/rkanji")
 	public ResponseEntity<JMDictEntry> getRandomKanji() {
 		return ResponseEntity.ok(ninhongoService.getRandomKanji());
 	}
 	
 	//Devolvemos una palabra que no sea kanji del día
-	@GetMapping("/wotnk")
+	@GetMapping("/nkotd")
 	public ResponseEntity<JMDictEntry> getKanaOfTheDay() {
 		return ResponseEntity.ok(ninhongoService.getKanaOfTheDay());
 	}
 	
 	//Devolvemos una palabra aleatoria
-	@GetMapping("/rwotnk")
+	@GetMapping("/rnkanji")
 	public ResponseEntity<JMDictEntry> getRandomKana() {
 		return ResponseEntity.ok(ninhongoService.getRandomKana());
 	}
