@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,15 +129,16 @@ public class NinhongoService {
 	
 	//Creamos el método para programar la tarea utilizando scheduled, este provocará un cambio de ID al día
 	@Scheduled(cron = "0 0 4 * * ?")
-	public void scheduledJsonRead() {
+	public synchronized void changeWordOfTheDay() {
+		
 		LocalTime now = LocalTime.now();
-		log.info("Inicio de cambio de palabra del día: {}", now.toString());
-		
-		generatedRandomIdOfTheDay();
-		
-		now = LocalTime.now();
-		log.info("Finalizado cambio de palabra del día: {}", now.toString());
-		
+    	log.info("Inicio de cambio de palabra del día: {}", now.toString());
+    	
+    	generatedRandomIdOfTheDay();
+      
+        now = LocalTime.now();
+        log.info("Finalizado cambio de palabra del día: {}", now.toString());
+       
 	}
 	
 	//Generamos los valores aleatorios
