@@ -4,8 +4,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -15,11 +13,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class RateLimitInterceptor implements HandlerInterceptor {
 	
-	private final ConcurrentMap<String, RateLimiter> limiters = new ConcurrentHashMap<>();
-	
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		
-		//Obtenemos el ID del cliente (Se obtiene la IP)
+    private final ConcurrentMap<String, RateLimiter> limiters = new ConcurrentHashMap<>();
+    
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // Obtiene el ID del cliente (Se obtiene la IP)
         String clientId = getClientId(request);
         
         RateLimiter rateLimiter = limiters.computeIfAbsent(clientId, k -> new RateLimiter(20, TimeUnit.MINUTES));
@@ -30,8 +28,8 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-	
-	// Clase interna RateLimiter
+
+    // Clase interna RateLimiter
     static class RateLimiter {
         private final int maxRequests;
         private final long timeWindowMillis;
@@ -48,19 +46,22 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         public synchronized boolean allowRequest() {
             long now = System.currentTimeMillis();
             if (now - windowStart > timeWindowMillis) {
-                windowStart = now;  // Reiniciar el inicio de la ventana de tiempo
-                requestCount = 0;   // Reiniciar el contador de solicitudes
+                windowStart = now;
+                requestCount = 0;
             }
             if (requestCount < maxRequests) {
                 requestCount++;
-                return true;  // Permitir la solicitud
+                return true;
             }
-            return false;  // Rechazar la solicitud
+            return false;
         }
     }
-	
-    private String getClientId(HttpServletRequest request) {    	
-        return request.getRemoteAddr();
+
+    private String getClientId(HttpServletRequest request) {
+    	String clientIp = request.getHeader("X-Forwarded-For");
+        if (clientIp == null || clientIp.isEmpty()) {
+            clientIp = request.getRemoteAddr();
+        }
+        return clientIp;
     }
-	
 }

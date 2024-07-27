@@ -128,7 +128,7 @@ public class NinhongoService {
 	
 	
 	//Creamos el método para programar la tarea utilizando scheduled, este provocará un cambio de ID al día
-	@Scheduled(cron = "0 0 4 * * ?")
+	@Scheduled(cron = "0 0 4 * * ?", zone = "Europe/Madrid")
 	public synchronized void changeWordOfTheDay() {
 		
 		LocalTime now = LocalTime.now();
