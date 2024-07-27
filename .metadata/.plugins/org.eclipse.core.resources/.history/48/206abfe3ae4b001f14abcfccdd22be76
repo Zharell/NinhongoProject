@@ -1,0 +1,5 @@
+package com.ninhongo.config;
+
+public class WebConfig {
+
+}

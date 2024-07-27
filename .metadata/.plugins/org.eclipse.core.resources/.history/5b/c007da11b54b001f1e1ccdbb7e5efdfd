@@ -1,0 +1,70 @@
+package com.ninhongo.interceptor;
+
+import java.util.concurrent.TimeUnit;
+
+public class RateLimiter {
+	
+	private int maxRequest;
+	private long timeWindowMillis;
+	private long windowStart;
+	private int requestCount;
+	
+	public RateLimiter (int maxRequest, TimeUnit timeWindowUnit) {
+		this.maxRequest = maxRequest;
+		this.timeWindowMillis = timeWindowUnit.toMillis(1);
+		this.windowStart = System.currentTimeMillis();
+		this.requestCount = 0;
+	}
+	
+	public synchronized boolean allowRequest() {
+		long now = System.currentTimeMillis();
+		
+		//Comprobamos la duración de la sesión y reiniciamos tras un tiempo
+		if (now - windowStart > timeWindowMillis) {
+			windowStart = now;
+			requestCount = 0;
+		}
+		
+		//Comprobamos si no ha superado el número de peticiones
+		if (requestCount < maxRequest) {
+			requestCount++;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public int getMaxRequest() {
+		return maxRequest;
+	}
+
+	public void setMaxRequest(int maxRequest) {
+		this.maxRequest = maxRequest;
+	}
+
+	public long getTimeWindowMillis() {
+		return timeWindowMillis;
+	}
+
+	public void setTimeWindowMillis(long timeWindowMillis) {
+		this.timeWindowMillis = timeWindowMillis;
+	}
+
+	public long getWindowStart() {
+		return windowStart;
+	}
+
+	public void setWindowStart(long windowStart) {
+		this.windowStart = windowStart;
+	}
+
+	public int getRequestCount() {
+		return requestCount;
+	}
+
+	public void setRequestCount(int requestCount) {
+		this.requestCount = requestCount;
+	}
+	
+	
+}
